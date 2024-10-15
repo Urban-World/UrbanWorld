@@ -13,7 +13,7 @@ conda env create -f urbanworld.yml
 3. Download different versions of ControlNet from [Hugging Face](https://huggingface.co/models?sort=downloads&search=controlnet) and UrbanWorld-UV-ControlNet from [here](https://huggingface.co/Urban-World/UrbanWorld-UV-control).
 
 ## Quick Start
-1. Modify the settings in `run_osm.sh` and configs in `/controlnet/config/`.
+1. Modify the settings in `run_osm.sh` and configs in `controlnet/config/`.
 
 2. Run the following command:
 ```bash
