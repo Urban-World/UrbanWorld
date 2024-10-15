@@ -1,0 +1,44 @@
+
+txt2img:
+  "sd_model_key": "./sd-1.5"
+  "ip_adapter_image_path": 
+  'prompt': ''
+  "negative_prompt": "strong light, Bright light, intense light, dazzling light, brilliant light, radiant light, Shade, darkness, silhouette, dimness, obscurity, shadow, glasses"
+  "seed": 0
+  "width": 1024
+  "height": 1024
+  "num_images_per_prompt": 1
+  "guidance_scale": 7.0
+  "num_inference_steps": 30
+  "controlnet_units":
+    - "preprocessor": "none"
+      "controlnet_key": "./control_depth15"
+      "condition_image_path": 
+      "weight": 1.0
+
+
+inpaint:
+  "sd_model_key": "./sd-1.5"
+  # run
+  "image_path":  
+  "mask_path":
+  "ip_adapter_image_path": 
+  "prompt": 
+  "negative_prompt": 
+  "seed":
+  "width": 1024
+  "height": 1024
+  "num_images_per_prompt": 1
+  "guidance_scale": 3.0
+  "num_inference_steps": 20
+  "denoising_strength": 1.0
+  "controlnet_units":
+    - "preprocessor": "none"
+      "controlnet_key": "./control_depth15"
+      "condition_image_path":
+      "weight": 1.0
+    - "preprocessor": "inpaint_global_harmonious"
+      "controlnet_key": "./sd15_inpaint"
+      "condition_image_path": ""
+      "weight": 0.5
+
