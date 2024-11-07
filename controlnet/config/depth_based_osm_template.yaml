@@ -1,6 +1,6 @@
 
 txt2img:
-  "sd_model_key": "./sd-1.5"
+  "sd_model_key": "./sd-1.5" #modify to your path of SD-1.5
   "ip_adapter_image_path": 
   'prompt': ''
   "negative_prompt": "strong light, Bright light, intense light, dazzling light, brilliant light, radiant light, Shade, darkness, silhouette, dimness, obscurity, shadow, glasses"
@@ -12,13 +12,13 @@ txt2img:
   "num_inference_steps": 30
   "controlnet_units":
     - "preprocessor": "none"
-      "controlnet_key": "./control_depth15"
+      "controlnet_key": "./control_depth15" #https://huggingface.co/lllyasviel/sd-controlnet-depth
       "condition_image_path": 
       "weight": 1.0
 
 
 inpaint:
-  "sd_model_key": "./sd-1.5"
+  "sd_model_key": "./sd-1.5" #modify to your path of SD-1.5
   # run
   "image_path":  
   "mask_path":
@@ -34,11 +34,11 @@ inpaint:
   "denoising_strength": 1.0
   "controlnet_units":
     - "preprocessor": "none"
-      "controlnet_key": "./control_depth15"
-      "condition_image_path":
+      "controlnet_key": "./control_depth15" #https://huggingface.co/lllyasviel/sd-controlnet-depth
+      "condition_image_path": 
       "weight": 1.0
     - "preprocessor": "inpaint_global_harmonious"
-      "controlnet_key": "./sd15_inpaint"
+      "controlnet_key": "./sd15_inpaint" #https://huggingface.co/lllyasviel/control_v11p_sd15_inpaint
       "condition_image_path": ""
       "weight": 0.5
 
