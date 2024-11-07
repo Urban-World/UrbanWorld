@@ -1,7 +1,6 @@
 
 inpaint:
-  "sd_model_key": "./sd-1.5"
-  # run
+  "sd_model_key": "./sd-1.5" #modify to your SD-1.5 path
   "image_path":
   "mask_path":
   "ip_adapter_image_path": 
@@ -16,16 +15,16 @@ inpaint:
   "denoising_strength": 1.0
   "controlnet_units":
     - "preprocessor": "none"
-      "controlnet_key": "./uv_controlnet"
+      "controlnet_key": "./uv_controlnet"  #modify to your path of UV-controlnet weight folder
       "condition_image_path":
       "weight": 1.0
     - "preprocessor": "inpaint_global_harmonious"
-      "controlnet_key": "./sd15_inpaint"
+      "controlnet_key": "./sd15_inpaint"  #modify to your path of SD inpainting weight folder
       "condition_image_path": ""
       "weight": 0.5
 
 img2img:
-  "sd_model_key": "./realisticVision"
+  "sd_model_key": "./realisticVision" #modify to your path of SD Realistic Vision weight folder
   # run
   "image_path":
   "ip_adapter_image_path": 
@@ -40,10 +39,10 @@ img2img:
   "denoising_strength": 0.75
   "controlnet_units":
     - "preprocessor": "none"
-      "controlnet_key": "./uv_controlnet"
+      "controlnet_key": "./uv_controlnet" #modify to your path of UV-controlnet weight folder
       "condition_image_path":
       "weight": 1.0
     - "preprocessor": "none"
-      "controlnet_key": "./sd15_tile"
+      "controlnet_key": "./sd15_tile"  #modify to your path of sd15_tile weight folder
       "condition_image_path":
       "weight": 1.0
