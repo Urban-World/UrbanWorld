@@ -15,16 +15,16 @@ inpaint:
   "denoising_strength": 1.0
   "controlnet_units":
     - "preprocessor": "none"
-      "controlnet_key": "./uv_controlnet"  #modify to your path of UV-controlnet weight folder
+      "controlnet_key": "./uv_controlnet"  #https://huggingface.co/Urban-World/UrbanWorld-UV-control
       "condition_image_path":
       "weight": 1.0
     - "preprocessor": "inpaint_global_harmonious"
-      "controlnet_key": "./sd15_inpaint"  #modify to your path of SD inpainting weight folder
+      "controlnet_key": "./sd15_inpaint"  #https://huggingface.co/lllyasviel/control_v11p_sd15_inpaint
       "condition_image_path": ""
       "weight": 0.5
 
 img2img:
-  "sd_model_key": "./realisticVision" #modify to your path of SD Realistic Vision weight folder
+  "sd_model_key": "./realisticVision" #https://huggingface.co/GeorgeQi/realisticVisionV13_v13
   # run
   "image_path":
   "ip_adapter_image_path": 
@@ -39,10 +39,10 @@ img2img:
   "denoising_strength": 0.75
   "controlnet_units":
     - "preprocessor": "none"
-      "controlnet_key": "./uv_controlnet" #modify to your path of UV-controlnet weight folder
+      "controlnet_key": "./uv_controlnet" #https://huggingface.co/Urban-World/UrbanWorld-UV-control
       "condition_image_path":
       "weight": 1.0
     - "preprocessor": "none"
-      "controlnet_key": "./sd15_tile"  #modify to your path of sd15_tile weight folder
+      "controlnet_key": "./sd15_tile"  #https://huggingface.co/lllyasviel/control_v11f1e_sd15_tile
       "condition_image_path":
       "weight": 1.0
