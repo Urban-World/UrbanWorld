@@ -22,7 +22,7 @@ blender_path='<your blender path>'
 sd_config_1='./controlnet/config/depth_based_osm_template.yaml'
 sd_config_2='./controlnet/config/UV_based_osm_template.yaml'
 render_config='./rendering/config/train_config_render.py'
-ip_img='<your image path>'
+# ip_img='<your image path>'
 seed=1
    
     #Download, import and separate 3D scene from OSM
