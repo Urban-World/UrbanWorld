@@ -67,7 +67,7 @@ seed=1
                 --addonpath $addonpath \
                 --asset_save_path $asset_save_path 
 
-    LLM-empowered 3D asset rendering
+    # LLM-empowered 3D asset rendering
     source activate urbanworld
     CUDA_VISIBLE_DEVICES=0 python pipeline_osm.py  \
                             --sd_config $sd_config_1  \
