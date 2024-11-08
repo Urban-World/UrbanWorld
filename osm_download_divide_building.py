@@ -109,12 +109,14 @@ def extract_building_heights(osm_file, default_building_height, default_building
 
         # Check for "building" tags
         for tag in way.findall('tag'):
-            if tag.attrib['k'] == 'building' and tag.attrib['v'] == 'yes':
+            if tag.attrib['k'] == 'building':
                 building = True
             if tag.attrib['k'] == 'height':
                 height = float(tag.attrib['v'])
             if tag.attrib['k'] == 'building:levels':
-                levels = int(tag.attrib['v'])
+                if tag.attrib['v'].isdigit():
+                    levels = int(tag.attrib['v'])
+
 
         if building:
             building_name = f"buildings.{building_counter:03d}"
