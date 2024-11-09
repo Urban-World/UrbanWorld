@@ -28,6 +28,11 @@ from rendering import utils
 from rendering.models.textured_mesh import TexturedMeshModel
 from rendering.trainer import dr_eval,dr_eval2, forward_texturing
 
+def is_empty_obj_file(file_path):
+    if not os.path.exists(file_path):
+        return True
+    return False  
+
 def inpaint_viewpoint(sd_cfg, cnet, save_result_dir, mesh_model, dataloaders, inpaint_view_ids=[(5, 6)]):
     print(f"Project inpaint view {inpaint_view_ids}...")
     view_angle_info = {i:data for i, data in enumerate(dataloaders['train'])}
@@ -325,6 +330,10 @@ def main():
                 break
         if not find:
             print('Skip rendering!')
+            opt.outdir = None
+            continue
+        if is_empty_obj_file(opt.mesh_path):
+            print('No mesh, skip rendering!')
             opt.outdir = None
             continue
         # print(opt.outdir)
