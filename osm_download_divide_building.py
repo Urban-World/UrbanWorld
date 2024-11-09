@@ -7,12 +7,13 @@ import numpy as np
 
 import xml.etree.ElementTree as ET
 
-def filter_and_merge_path_road():
+def filter_and_merge_path_road(object_filepath):
     bpy.ops.object.select_all(action='DESELECT')
-    
+    count = 0
     for obj in bpy.context.scene.objects:
         if ('path' in obj.name or 'road' in obj.name) and 'building' not in obj.name:
             obj.select_set(True)
+            count += 1
     
     if bpy.context.selected_objects:
         bpy.context.view_layer.objects.active = bpy.context.selected_objects[0]
@@ -21,17 +22,18 @@ def filter_and_merge_path_road():
         merged_obj.name = 'map.osm_path_road'  
         
         merged_obj.data.name = 'map.osm_path_road'  
-
-
-def filter_and_merge_vegetation():
-
-    bpy.ops.object.select_all(action='DESELECT')
     
+    if count>0:
+        bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
+
+def filter_and_merge_vegetation(object_filepath):
+    bpy.ops.object.select_all(action='DESELECT')
+    count = 0
     for obj in bpy.context.scene.objects:
         if 'vegetation' in obj.name and 'building' not in obj.name:
             obj.select_set(True)
-    
-
+            count += 1
+            print('veg+1')
     if bpy.context.selected_objects:
         bpy.context.view_layer.objects.active = bpy.context.selected_objects[0]
         bpy.ops.object.join()
@@ -39,13 +41,20 @@ def filter_and_merge_vegetation():
         merged_obj.name = 'map.osm_vegetation'  
         
         merged_obj.data.name = 'map.osm_vegetation'  
+    print('veg num:',count)
+    if count>0:
+        bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
 
-def filter_and_merge_forest():
+
+def filter_and_merge_forest(object_filepath):
     bpy.ops.object.select_all(action='DESELECT')
+    count = 0
     
     for obj in bpy.context.scene.objects:
         if 'forest' in obj.name and 'building' not in obj.name:
             obj.select_set(True)
+            count += 1
+            print('forest+1')
     
     if bpy.context.selected_objects:
         bpy.context.view_layer.objects.active = bpy.context.selected_objects[0]
@@ -53,30 +62,40 @@ def filter_and_merge_forest():
         merged_obj = bpy.context.object  
         merged_obj.name = 'map.osm_forest'  
         
-        merged_obj.data.name = 'map.osm_forest' 
+        merged_obj.data.name = 'map.osm_forest'  
+    print('forest num:',count)
 
-def filter_and_merge_water():
+    if count>0:
+        bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
+
+def filter_and_merge_water(object_filepath):
     bpy.ops.object.select_all(action='DESELECT')
+    count = 0
     
     for obj in bpy.context.scene.objects:
         if 'water' in obj.name and 'building' not in obj.name:
             obj.select_set(True)
-    
+            count += 1
+            print('water+1')
     if bpy.context.selected_objects:
         bpy.context.view_layer.objects.active = bpy.context.selected_objects[0]
         bpy.ops.object.join()
         merged_obj = bpy.context.object  
-        merged_obj.name = 'map.osm_water' 
-        
-        merged_obj.data.name = 'map.osm_water'  
+        merged_obj.name = 'map.osm_water'  
 
-def filter_and_merge_area():
+        merged_obj.data.name = 'map.osm_water'  
+    print('water num:',count)
+
+    if count>0:
+        bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
+
+def filter_and_merge_area(object_filepath):
     bpy.ops.object.select_all(action='DESELECT')
-    
+    count = 0
     for obj in bpy.context.scene.objects:
         if 'area' in obj.name and 'building' not in obj.name:
             obj.select_set(True)
-    
+            count += 1
     if bpy.context.selected_objects:
         bpy.context.view_layer.objects.active = bpy.context.selected_objects[0]
         bpy.ops.object.join()
@@ -84,6 +103,8 @@ def filter_and_merge_area():
         merged_obj.name = 'map.osm_area'  
         
         merged_obj.data.name = 'map.osm_area'  
+    if count>0:
+        bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
 
 def merge_objects():
     bpy.ops.object.select_all(action='DESELECT')
@@ -258,49 +279,40 @@ def download_divide(max_lat, min_lat, max_long, min_long, obj_save_path, osm_sav
     if not os.path.exists(object_dir):
         os.makedirs(object_dir)
     object_filepath = os.path.join(object_dir, "mesh.obj")
-    filter_and_merge_path_road()
-    bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
-
+    filter_and_merge_path_road(object_filepath)
+    
     #merge vegetation
     object_dir = os.path.join(obj_save_path, 'map.osm_vegetation')
     if not os.path.exists(object_dir):
         os.makedirs(object_dir)
     object_filepath = os.path.join(object_dir, "mesh.obj")
-    filter_and_merge_vegetation()
-    bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
-
+    filter_and_merge_vegetation(object_filepath)
+    
     #merge forest 
     object_dir = os.path.join(obj_save_path, 'map.osm_forest')
     if not os.path.exists(object_dir):
         os.makedirs(object_dir)
     object_filepath = os.path.join(object_dir, "mesh.obj")
-    filter_and_merge_forest()
-    bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
-
+    filter_and_merge_forest(object_filepath)
+    
     #merge water
     object_dir = os.path.join(obj_save_path, 'map.osm_water')
     if not os.path.exists(object_dir):
         os.makedirs(object_dir)
     object_filepath = os.path.join(object_dir, "mesh.obj")
-    filter_and_merge_water()
-    bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
+    filter_and_merge_water(object_filepath)
 
     #merge area
     object_dir = os.path.join(obj_save_path, 'map.osm_area')
     if not os.path.exists(object_dir):
         os.makedirs(object_dir)
     object_filepath = os.path.join(object_dir, "mesh.obj")
-    filter_and_merge_area()
-    bpy.ops.export_scene.obj(filepath=object_filepath, use_selection=True)
+    filter_and_merge_area(object_filepath)
 
     bpy.context.view_layer.update()
     if not os.path.exists(export_path):
         os.makedirs(export_path)
     bpy.ops.export_scene.obj(filepath=export_path+'mesh.obj')
-
-
-
-
 
 
 if __name__ == '__main__':
